@@ -1,0 +1,90 @@
+@import '/index.scss';
+
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: $br-r;
+  overflow: hidden;
+
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .el {
+      width: 100%;
+      height: 100%;
+      background-color: $green;
+      color: $black;
+      transition: color $tr-btn;
+
+      &:hover {
+        color: $black-h;
+      }
+
+      &:active {
+        color: $black-a;
+      }
+
+      @media (max-width: 1000px) {
+        &:hover {
+          color: $black;
+        }
+
+        &:active {
+          color: $black;
+        }
+      }
+
+      p {
+        margin: 0px;
+      }
+
+      &:nth-of-type(2) {
+        background-color: $black;
+        color: $green;
+        transition: color $tr-btn;
+
+        &:hover {
+          color: $green-h;
+        }
+
+        &:active {
+          color: $green-a;
+        }
+
+        @media (max-width: 1000px) {
+          &:hover {
+            color: $green;
+          }
+
+          &:active {
+            color: $green;
+          }
+        }
+      }
+    }
+  }
+}
+
+.perspectiveText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  p {
+    pointer-events: none;
+    text-transform: uppercase;
+
+    &:nth-of-type(2) {
+      position: absolute;
+    }
+  }
+}

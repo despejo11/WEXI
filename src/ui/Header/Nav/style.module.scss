@@ -1,0 +1,48 @@
+@import '/index.scss';
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 40px 50px 40px;
+  height: 100%;
+  box-sizing: border-box;
+
+  .body {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    .linkContainer {
+      perspective: 120px;
+      perspective-origin: bottom;
+      width: 0;
+    }
+
+    a {
+      @include link(
+        $black,
+        $black-h,
+        $black-a,
+        clamp(1.625rem, 1.17rem + 2.27vw, 2.875rem)
+      );
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    a {
+      width: 0;
+      text-decoration: underline;
+      @include link(
+        $black,
+        $black-h,
+        $black-a,
+        clamp(0.875rem, 0.761rem + 0.57vw, 1.188rem)
+      );
+    }
+  }
+}

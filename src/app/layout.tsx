@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
-
-import '@/../index.scss'
 import './global.scss'
+import '@/../index.scss'
 
-const font = Montserrat({ weight: '700', subsets: ['latin', 'cyrillic'] })
+import { Montserrat } from 'next/font/google'
+import type { Metadata } from 'next'
+
+const font = Montserrat({ weight: '600', subsets: ['latin', 'cyrillic'] })
 
 export const metadata: Metadata = {
   title: 'Wexi',
