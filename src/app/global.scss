@@ -3,6 +3,10 @@
 body {
   background-color: $white;
 
+  ::selection {
+    background-color: #7e7e7eb3;
+  }
+
   .container {
     max-width: 1200px;
     padding-inline: 15px;
@@ -16,20 +20,27 @@ body {
 
   .screenWidthWarning {
     display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-inline: 15px;
+
+    p {
+      color: $black;
+      text-wrap: balance;
+      font-size: 21px;
+      text-align: center;
+      line-height: 28px;
+
+      span {
+        @include span($black, $green);
+      }
+    }
   }
 
   @media (max-width: 319.9px) {
     .screenWidthWarning {
-      display: block;
-      padding-inline: 15px;
-      text-align: center;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: $black;
-      font-size: 21px;
-      text-wrap: balance;
     }
 
     .screenContent {

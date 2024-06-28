@@ -1,0 +1,36 @@
+@import '/index.scss';
+
+.button {
+  position: relative;
+  text-decoration: none;
+  background-color: $green;
+  color: $black;
+  border-radius: $br-r;
+  padding: 5px 25px 5px 15px;
+  transition: color $tr-btn;
+
+  &:hover {
+    color: $black-h;
+
+    .icon {
+      color: $black-h;
+    }
+  }
+
+  &:active {
+    color: $black-a;
+
+    .icon {
+      color: $black-a;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 11px;
+    color: $black;
+    transition: color $tr-btn;
+  }
+}

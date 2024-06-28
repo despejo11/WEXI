@@ -1,10 +1,11 @@
 'use client'
 
+import styles from './style.module.scss'
+
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import Button from './Button/Button'
-import styles from './style.module.scss'
 import Nav from './Nav/Nav'
 
 const menu = {
@@ -34,22 +35,29 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false)
 
   return (
-    <header className={styles.header}>
-      <motion.div
-        className={styles.menu}
-        variants={menu}
-        animate={isActive ? 'open' : 'closed'}
-        initial='closed'
-      >
-        <AnimatePresence>{isActive && <Nav />}</AnimatePresence>
-      </motion.div>
+    <header>
+      <div className={styles.logo}>
+        <img src='/images/other/logo.png' alt='Logo' />
+        <p>WEXI</p>
+      </div>
 
-      <Button
-        isActive={isActive}
-        toggleMenu={() => {
-          setIsActive(!isActive)
-        }}
-      />
+      <div className={styles.menu}>
+        <motion.div
+          className={styles.content}
+          variants={menu}
+          animate={isActive ? 'open' : 'closed'}
+          initial='closed'
+        >
+          <AnimatePresence>{isActive && <Nav />}</AnimatePresence>
+        </motion.div>
+
+        <Button
+          isActive={isActive}
+          toggleMenu={() => {
+            setIsActive(!isActive)
+          }}
+        />
+      </div>
     </header>
   )
 }

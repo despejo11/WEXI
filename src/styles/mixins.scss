@@ -21,3 +21,9 @@
     }
   }
 }
+
+@mixin span($bg, $color) {
+  @extend %span;
+  background-color: #{$bg};
+  color: #{$color};
+}

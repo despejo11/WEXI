@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 const font = Montserrat({ weight: '600', subsets: ['latin', 'cyrillic'] })
 
 export const metadata: Metadata = {
-  title: 'Wexi',
+  title: 'WEXI',
   description: 'A simple and efficient task manager.',
   icons: {
     icon: ['/favicons/favicon.ico?v=4'],
@@ -26,7 +26,9 @@ export default function RootLayout({
     <html lang='en'>
       <body className={font.className}>
         <div className='screenWidthWarning'>
-          <p>Only for devices wider than 320px!</p>
+          <p>
+            <span>Only</span> for devices wider than 320px!
+          </p>
         </div>
 
         <div className='screenContent'>{children}</div>
