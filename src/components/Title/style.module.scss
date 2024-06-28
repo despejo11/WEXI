@@ -1,0 +1,45 @@
+@import '/index.scss';
+
+.content {
+  margin-top: 200px;
+  position: relative;
+
+  .title {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    color: $white-o;
+    user-select: none;
+  }
+
+  .home {
+    font-size: clamp(5rem, 0.227rem + 23.86vw, 18.125rem);
+  }
+
+  .contact {
+    font-size: clamp(3.313rem, 0.381rem + 14.66vw, 11.375rem);
+  }
+
+  .errorPage {
+    font-size: clamp(7.813rem, 0.426rem + 36.93vw, 28.125rem);
+  }
+
+  .titled {
+    font-size: clamp(1.063rem, 0.54rem + 2.61vw, 2.5rem);
+    text-align: center;
+    color: $black;
+
+    span {
+      @include span($black, $green);
+    }
+  }
+
+  .button {
+    margin: auto;
+    margin-top: 20px;
+    width: 120px;
+  }
+}

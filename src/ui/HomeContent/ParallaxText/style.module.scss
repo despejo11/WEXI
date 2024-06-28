@@ -1,0 +1,33 @@
+@import './index.scss';
+
+.content {
+  margin-top: 200px;
+  overflow: hidden;
+
+  .phrase {
+    display: flex;
+    gap: clamp(1.563rem, 0.994rem + 2.84vw, 3.125rem);
+    align-items: center;
+    padding-left: clamp(1.563rem, 0.994rem + 2.84vw, 3.125rem);
+    padding-top: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
+
+    p {
+      font-size: clamp(1.438rem, -0.085rem + 7.61vw, 5.625rem);
+
+      .task {
+        text-decoration: line-through;
+      }
+    }
+
+    .spanText {
+      @include span($green, $black);
+      font-size: clamp(0.75rem, 0.364rem + 1.93vw, 1.813rem);
+    }
+  }
+
+  .slide {
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+  }
+}

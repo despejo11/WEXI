@@ -1,24 +1,11 @@
-import styles from '@/styles/not-found.module.scss'
-
 import Header from '@/ui/Header/Header'
-import LinkButton from '@/components/LinkButton/LinkButton'
+import Title from '@/components/Title/Title'
 
-import { LuExternalLink } from 'react-icons/lu'
-
-export default function notFound() {
+export default function page() {
   return (
-    <>
+    <div className='container'>
       <Header />
-      <div className={styles.content}>
-        <p className={styles.titled}>
-          <span>Wrong</span> turn?
-        </p>
-        <div className={styles.button}>
-          <LinkButton label='Go Home' icon={<LuExternalLink />} href='/' />
-        </div>
-
-        <p className={styles.title}>404</p>
-      </div>
-    </>
+      <Title title='404' span='Wrong' titled='turn?' showButton={true} />
+    </div>
   )
 }

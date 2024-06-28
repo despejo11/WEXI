@@ -2,8 +2,7 @@ import styles from './style.module.scss'
 
 import { motion } from 'framer-motion'
 
-import { TButtonProps } from './types'
-import { TPerspectiveTextProps } from './types'
+import { TButtonProps, TPerspectiveTextProps } from './types'
 
 export default function Button({ isActive, toggleMenu }: TButtonProps) {
   return (
