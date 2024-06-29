@@ -1,0 +1,41 @@
+@import '/index.scss';
+
+.content {
+  margin-top: $m-top;
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+
+    .card {
+      position: relative;
+      text-wrap: balance;
+
+      .title {
+        position: absolute;
+        top: -68%;
+        font-size: clamp(1.938rem, 0.369rem + 7.84vw, 6.25rem);
+        color: $white-o;
+        user-select: none;
+        z-index: -1;
+
+        @media (max-width: 1200px) {
+          position: relative;
+          top: 0;
+        }
+      }
+
+      .description {
+        margin-top: 5px;
+        color: $black;
+        font-size: clamp(0.938rem, 0.869rem + 0.34vw, 1.125rem);
+        line-height: $l-height;
+
+        span {
+          @include span($black, $green);
+        }
+      }
+    }
+  }
+}

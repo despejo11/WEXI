@@ -4,6 +4,7 @@ import styles from './style.module.scss'
 
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 
 import Button from './Button/Button'
 import Nav from './Nav/Nav'
@@ -36,10 +37,10 @@ export default function Header() {
 
   return (
     <header>
-      <div className={styles.logo}>
+      <Link href='/' className={styles.logo}>
         <img src='/images/other/logo.png' alt='Logo' />
         <p>WEXI</p>
-      </div>
+      </Link>
 
       <div className={styles.menu}>
         <motion.div

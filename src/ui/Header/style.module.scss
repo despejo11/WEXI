@@ -5,6 +5,7 @@
   left: 50px;
   top: 39px;
   user-select: none;
+  text-decoration: none;
 
   p {
     font-size: 50px;
@@ -23,6 +24,7 @@
 
   @media (max-width: 400px) {
     top: 48px;
+    left: 30px;
 
     p {
       font-size: 35px;

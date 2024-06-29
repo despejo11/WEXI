@@ -1,13 +1,13 @@
 @import './index.scss';
 
 .content {
-  margin-top: 200px;
+  margin-top: $m-top;
   overflow: hidden;
 
   .phrase {
     display: flex;
-    gap: clamp(1.563rem, 0.994rem + 2.84vw, 3.125rem);
     align-items: center;
+    gap: clamp(1.563rem, 0.994rem + 2.84vw, 3.125rem);
     padding-left: clamp(1.563rem, 0.994rem + 2.84vw, 3.125rem);
     padding-top: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
 
