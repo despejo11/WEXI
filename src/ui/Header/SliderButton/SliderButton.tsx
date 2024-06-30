@@ -2,9 +2,12 @@ import styles from './style.module.scss'
 
 import { motion } from 'framer-motion'
 
-import { TButtonProps, TPerspectiveTextProps } from './types'
+import { TSliderButtonProps, TPerspectiveTextProps } from './types'
 
-export default function Button({ isActive, toggleMenu }: TButtonProps) {
+export default function SliderButton({
+  isActive,
+  toggleMenu,
+}: TSliderButtonProps) {
   return (
     <div className={styles.button}>
       <motion.div

@@ -9,3 +9,13 @@
   padding-inline: 12px;
   user-select: none;
 }
+
+%regularBtn {
+  cursor: pointer;
+  border-radius: $br-r;
+  padding: 6px 24px 6px 24px;
+  transition: color $tr-btn;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

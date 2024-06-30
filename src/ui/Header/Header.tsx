@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 
-import Button from './Button/Button'
+import SliderButton from './SliderButton/SliderButton'
 import Nav from './Nav/Nav'
 
 const menu = {
@@ -52,7 +52,7 @@ export default function Header() {
           <AnimatePresence>{isActive && <Nav />}</AnimatePresence>
         </motion.div>
 
-        <Button
+        <SliderButton
           isActive={isActive}
           toggleMenu={() => {
             setIsActive(!isActive)

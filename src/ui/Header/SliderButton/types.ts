@@ -1,4 +1,4 @@
-export type TButtonProps = {
+export type TSliderButtonProps = {
   isActive: boolean
   toggleMenu: () => void
 }

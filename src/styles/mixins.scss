@@ -27,3 +27,28 @@
   background-color: #{$bg};
   color: #{$color};
 }
+
+@mixin regularBtn($bg, $color, $color-h, $color-a, $font-size) {
+  @extend %regularBtn;
+  background-color: #{$bg};
+  color: #{$color};
+  font-size: #{$font-size};
+
+  &:hover {
+    color: #{$color-h};
+  }
+
+  &:active {
+    color: #{$color-a};
+  }
+
+  @media (max-width: 1000px) {
+    &:hover {
+      color: #{$color};
+    }
+
+    &:active {
+      color: #{$color};
+    }
+  }
+}
