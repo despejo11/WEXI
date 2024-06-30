@@ -5,9 +5,7 @@ import About from './About/About'
 export default function HomeContent() {
   return (
     <>
-      <div className='container'>
-        <Title title='HOME' span='Correct' titled='turn' showButton={false} />
-      </div>
+      <Title title='HOME' span='Correct' titled='turn' showButton={false} />
       <ParallaxText />
       <div className='container'>
         <About />
