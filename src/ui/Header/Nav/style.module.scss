@@ -17,15 +17,16 @@
       perspective: 120px;
       perspective-origin: bottom;
       width: 0;
-    }
 
-    a {
-      @include link(
-        $black,
-        $black-h,
-        $black-a,
-        clamp(1.625rem, 1.17rem + 2.27vw, 2.875rem)
-      );
+      .link {
+        cursor: pointer;
+        @include link(
+          $black,
+          $black-h,
+          $black-a,
+          clamp(1.625rem, 1.17rem + 2.27vw, 2.875rem)
+        );
+      }
     }
   }
 

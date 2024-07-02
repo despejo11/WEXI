@@ -2,7 +2,14 @@ import Header from '@/ui/Header/Header'
 import Title from '@/components/Title/Title'
 import Footer from '@/ui/Footer/Footer'
 
-export default function page() {
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'WEXI/404',
+  description: 'Page not found - WEXI',
+}
+
+export default function Page() {
   return (
     <>
       <Header />

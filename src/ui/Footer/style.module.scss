@@ -52,9 +52,11 @@
             margin-bottom: 12px;
             font-size: clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
             color: $white-o;
+            user-select: none;
           }
 
-          a {
+          .link {
+            cursor: pointer;
             width: 0;
             @include link(
               $green,

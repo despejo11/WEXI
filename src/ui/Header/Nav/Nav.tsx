@@ -1,12 +1,24 @@
+'use client'
+
 import styles from './style.module.scss'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
+import { animatePageOut } from '@/utils/transition'
 import { links, footerLinks } from './data'
 import { perspective, slideIn } from './animations'
 
 export default function Nav() {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handleClick = (href: string) => {
+    if (pathname !== href) {
+      animatePageOut(href, router)
+    }
+  }
+
   return (
     <div className={styles.nav}>
       <div className={styles.body}>
@@ -15,7 +27,7 @@ export default function Nav() {
 
           return (
             <div key={`b_${i}`} className={styles.linkContainer}>
-              <Link href={href}>
+              <a onClick={() => handleClick(href)} className={styles.link}>
                 <motion.div
                   custom={i}
                   variants={perspective}
@@ -25,7 +37,7 @@ export default function Nav() {
                 >
                   {title}
                 </motion.div>
-              </Link>
+              </a>
             </div>
           )
         })}

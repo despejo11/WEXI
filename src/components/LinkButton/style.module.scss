@@ -8,6 +8,7 @@
   border-radius: $br-r;
   padding: 6px 24px 6px 14px;
   transition: color $tr-btn;
+  cursor: pointer;
 
   &:hover {
     color: $black-h;
@@ -22,6 +23,24 @@
 
     .icon {
       color: $black-a;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    &:hover {
+      color: $black;
+
+      .icon {
+        color: $black;
+      }
+    }
+
+    &:active {
+      color: $black;
+
+      .icon {
+        color: $black;
+      }
     }
   }
 

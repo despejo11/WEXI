@@ -30,10 +30,22 @@ function Slide(props: TSlideProps) {
 function Phrase({ text }: TPhraseProps) {
   return (
     <div className={styles.phrase}>
-      <p>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.6 }}
+      >
         WEXI <span className={styles.task}>TASK</span> MANAGER
-      </p>
-      <span className={styles.spanText}>{text}</span>
+      </motion.p>
+
+      <motion.span
+        className={styles.spanText}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 8, delay: 2 }}
+      >
+        {text}
+      </motion.span>
     </div>
   )
 }

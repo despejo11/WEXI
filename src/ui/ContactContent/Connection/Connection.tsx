@@ -1,29 +1,67 @@
+'use client'
+
 import styles from './style.module.scss'
+
+import { motion } from 'framer-motion'
 
 export default function Connection() {
   return (
     <div className={styles.content}>
       <div className={styles.heading}>
-        <p className={styles.title}>CONNECTION</p>
-        <p className={styles.description}>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className={styles.title}
+        >
+          CONNECTION
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+          className={styles.description}
+        >
           If you have <span>any</span> ideas, questions, or feedback, please get
           in touch with us.
-        </p>
+        </motion.p>
       </div>
 
       <div className={styles.connections}>
-        <a className={styles.email} href='mailto: wexi@gmail.com'>
+        <motion.a
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            type: 'spring',
+            stiffness: 120,
+            damping: 8,
+            delay: 1.8,
+          }}
+          className={styles.email}
+          href='mailto: wexi@gmail.com'
+        >
           wexi@gmail.com
-        </a>
-        <a className={styles.tel} href='tel: (555) 123-4567'>
+        </motion.a>
+        <motion.a
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 2.2 }}
+          className={styles.tel}
+          href='tel: (555) 123-4567'
+        >
           (555) 123-4567
-        </a>
+        </motion.a>
       </div>
 
-      <div className={styles.socials}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 2.6 }}
+        className={styles.socials}
+      >
         <a href=''>Facebook</a>
         <a href=''>Instagram</a>
-      </div>
+      </motion.div>
     </div>
   )
 }

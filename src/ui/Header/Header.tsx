@@ -4,8 +4,9 @@ import styles from './style.module.scss'
 
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
+import { animatePageOut } from '@/utils/transition'
 import SliderButton from './SliderButton/SliderButton'
 import Nav from './Nav/Nav'
 
@@ -35,14 +36,34 @@ const menu = {
 export default function Header() {
   const [isActive, setIsActive] = useState(false)
 
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handleLogoClick = () => {
+    if (pathname !== '/') {
+      animatePageOut('/', router)
+    }
+  }
+
   return (
     <header>
-      <Link href='/' className={styles.logo}>
+      <motion.a
+        initial={{ opacity: 0, y: -25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 8, delay: 1 }}
+        onClick={handleLogoClick}
+        className={styles.logo}
+      >
         <img src='/images/other/logo.png' alt='Logo' />
         <p>WEXI</p>
-      </Link>
+      </motion.a>
 
-      <div className={styles.menu}>
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 8, delay: 1 }}
+        className={styles.menu}
+      >
         <motion.div
           className={styles.content}
           variants={menu}
@@ -58,7 +79,7 @@ export default function Header() {
             setIsActive(!isActive)
           }}
         />
-      </div>
+      </motion.div>
     </header>
   )
 }

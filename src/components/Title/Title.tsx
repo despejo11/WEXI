@@ -1,5 +1,9 @@
+'use client'
+
 import styles from './style.module.scss'
 import LinkButton from '@/components/LinkButton/LinkButton'
+
+import { motion } from 'framer-motion'
 
 import { LuExternalLink } from 'react-icons/lu'
 
@@ -23,10 +27,23 @@ export default function Title({
 
   return (
     <div className={styles.content}>
-      <p className={titleClass}>{title}</p>
-      <p className={styles.titled}>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1 }}
+        className={titleClass}
+      >
+        {title}
+      </motion.p>
+
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 8, delay: 1.4 }}
+        className={styles.titled}
+      >
         <span>{span}</span> {titled}
-      </p>
+      </motion.p>
 
       {showButton && (
         <div className={styles.button}>
