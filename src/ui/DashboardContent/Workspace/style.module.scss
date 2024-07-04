@@ -1,0 +1,34 @@
+@import '/index.scss';
+
+.content {
+  .addTodo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: center;
+    gap: clamp(1.25rem, 0.833rem + 2.08vw, 1.875rem);
+
+    @media (max-width: 800px) {
+      justify-content: center;
+    }
+
+    .inputText {
+      transition: $tr-btn;
+      padding-block: clamp(0.5rem, 0.417rem + 0.42vw, 0.625rem);
+      padding-inline: clamp(1.375rem, 1.25rem + 0.63vw, 1.563rem);
+      border-radius: $br-r;
+      border: 2px solid $br-c;
+      font-size: clamp(1.031rem, 0.885rem + 0.73vw, 1.25rem);
+      color: $black;
+      background-color: $white;
+
+      &::placeholder {
+        color: #c2c2c2;
+      }
+
+      &:focus {
+        border: 2px solid $green-a;
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import '/index.scss';
+
+.content {
+  min-width: clamp(16.25rem, 10.417rem + 29.17vw, 25rem);
+  height: clamp(20rem, 16.667rem + 16.67vw, 25rem);
+  padding: clamp(1.25rem, 0.833rem + 2.08vw, 1.875rem);
+  border-radius: $br-r;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='380' height='380' preserveAspectRatio='none' viewBox='0 0 380 380'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1038%26quot%3b)' fill='none'%3e%3crect width='380' height='380' x='0' y='0' fill='rgba(17%2c 17%2c 16%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c135.266C29.034%2c139.131%2c61.831%2c150.372%2c86.081%2c133.944C110.341%2c117.509%2c106.923%2c81.043%2c119.269%2c54.468C131.724%2c27.658%2c156.452%2c6.61%2c158.918%2c-22.849C161.65%2c-55.483%2c155.451%2c-91.377%2c133.514%2c-115.691C111.672%2c-139.899%2c75.8%2c-142.573%2c44.082%2c-150.128C13.951%2c-157.305%2c-17.695%2c-169.807%2c-46.565%2c-158.585C-74.903%2c-147.569%2c-85.925%2c-114.684%2c-105.952%2c-91.808C-126.109%2c-68.784%2c-156.956%2c-53.288%2c-164.673%2c-23.676C-172.62%2c6.818%2c-165.057%2c41.208%2c-147.424%2c67.326C-130.738%2c92.042%2c-99.595%2c100.35%2c-72.512%2c112.831C-49.059%2c123.639%2c-25.598%2c131.858%2c0%2c135.266' fill='%230b0b0a'%3e%3c/path%3e%3cpath d='M380 536.64C412.51800000000003 537.005 448.685 546.962 475.206 528.143 501.623 509.398 505.8 472.591 514.308 441.336 521.626 414.451 521.759 387.574 521.052 359.72 520.249 328.108 525.383 295.016 509.89099999999996 267.449 492.955 237.313 466.148 208.93 432.317 201.826 398.888 194.807 365.695 213.682 336.246 230.988 311.596 245.474 298.779 271.879 278.616 292.15 256.51 314.375 223.34 326.609 212.05 355.852 199.89 387.347 202.255 424.064 215.736 455.017 229.322 486.211 255.69 510.878 286.15999999999997 526.018 314.93399999999997 540.316 347.871 536.279 380 536.64' fill='%23171716'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1038'%3e%3crect width='380' height='380' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-size: cover;
+
+  .title {
+    color: $white-o;
+    font-size: clamp(1.625rem, 1.125rem + 2.5vw, 2.375rem);
+    user-select: none;
+  }
+
+  .addWorkspace {
+    margin-top: 20px;
+    position: relative;
+    background-color: $green;
+    color: $black;
+    border-radius: $br-r;
+    padding: 8px clamp(1.75rem, 1.5rem + 1.25vw, 2.125rem) 8px
+      clamp(1.125rem, 0.875rem + 1.25vw, 1.5rem);
+    font-size: clamp(1rem, 0.833rem + 0.83vw, 1.25rem);
+    transition: color $tr-btn;
+    cursor: pointer;
+
+    &:hover {
+      color: $black-h;
+
+      .icon {
+        color: $black-h;
+      }
+    }
+
+    &:active {
+      color: $black-a;
+
+      .icon {
+        color: $black-a;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      &:hover {
+        color: $black;
+
+        .icon {
+          color: $black;
+        }
+      }
+
+      &:active {
+        color: $black;
+
+        .icon {
+          color: $black;
+        }
+      }
+    }
+
+    .icon {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      font-size: clamp(0.75rem, 0.625rem + 0.63vw, 0.938rem);
+      color: $black;
+      transition: color $tr-btn;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.content {
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+  }
+}

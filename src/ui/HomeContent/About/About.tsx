@@ -16,6 +16,7 @@ export default function About() {
   const handleClick = (href: string) => {
     if (pathname !== href) {
       animatePageOut(href, router)
+      window.scrollTo(0, 0)
     }
   }
 

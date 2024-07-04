@@ -11,7 +11,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
     const lenis = new Lenis({
       duration: 1.9,
-      syncTouch: true,
     })
 
     function raf(time: number) {
