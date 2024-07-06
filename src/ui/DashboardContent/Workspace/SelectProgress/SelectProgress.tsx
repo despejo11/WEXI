@@ -1,16 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import Select from 'react-select'
-
 import { customStyles } from './customStyles'
 
-const progress = [
-  { value: 'Not started', label: 'Not started' },
-  { value: 'In progress', label: 'In progress' },
-]
+import { useEffect, useState } from 'react'
+import Select, { SingleValue } from 'react-select'
 
-export default function SelectProgress() {
+import { TSelectProgressProps } from './types'
+
+export default function SelectProgress({
+  progress,
+  setProgress,
+}: TSelectProgressProps) {
+  const progressOptions = [
+    { value: 'Not started', label: 'Not started' },
+    { value: 'In progress', label: 'In progress' },
+  ]
+
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -30,11 +35,18 @@ export default function SelectProgress() {
   return (
     <Select
       placeholder='Progress'
-      isClearable
       isSearchable
-      options={progress}
+      options={progressOptions}
       styles={customStyles}
       onInputChange={handleInputChange}
+      value={progressOptions.find((option) => option.value === progress)}
+      onChange={(selectedOption) => {
+        const option = selectedOption as SingleValue<{
+          value: string
+          label: string
+        }>
+        setProgress(option?.value || '')
+      }}
     />
   )
 }

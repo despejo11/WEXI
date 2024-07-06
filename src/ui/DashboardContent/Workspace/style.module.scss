@@ -1,6 +1,42 @@
 @import '/index.scss';
 
 .content {
+  .workspaceInfo {
+    margin-bottom: clamp(1.875rem, 1.042rem + 4.17vw, 3.125rem);
+
+    .title {
+      font-size: clamp(2.188rem, 1.165rem + 5.11vw, 5rem);
+      color: $black;
+      text-align: right;
+
+      @media (max-width: 800px) {
+        text-align: center;
+      }
+    }
+
+    .titled {
+      margin-top: 10px;
+      font-size: clamp(1rem, 0.833rem + 0.83vw, 1.25rem);
+      color: $black-h;
+      text-align: right;
+
+      @media (max-width: 800px) {
+        text-align: center;
+      }
+    }
+
+    .limitMessage {
+      margin-top: 6px;
+      font-size: clamp(0.75rem, 0.583rem + 0.83vw, 1rem);
+      color: $black-a;
+      text-align: right;
+
+      @media (max-width: 800px) {
+        text-align: center;
+      }
+    }
+  }
+
   .addTodo {
     display: flex;
     flex-wrap: wrap;
@@ -28,6 +64,171 @@
 
       &:focus {
         border: 2px solid $green-a;
+      }
+    }
+
+    .addButton {
+      @include regularBtn($black, $green, $green-h, $green-a, 33px);
+    }
+
+    .addButtonDisabled {
+      @include regularBtn($black, $green, $green-h, $green-a, 33px);
+      cursor: default;
+      opacity: 0.4;
+      user-select: none;
+    }
+  }
+
+  .noNotes {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 21px;
+    color: $black;
+  }
+
+  .notes {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: 40px;
+
+    @media (max-width: 800px) {
+      justify-content: center;
+    }
+
+    .note {
+      width: clamp(17.5rem, 15.833rem + 8.33vw, 20rem);
+      border-radius: $br-r;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid $br-c;
+        padding: 20px 20px 0 20px;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='300' height='50' preserveAspectRatio='none' viewBox='0 0 300 50'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1165%26quot%3b)' fill='none'%3e%3crect width='300' height='50' x='0' y='0' fill='rgba(42%2c 43%2c 41%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c78.556C14.549%2c78.765%2c25.209%2c65.87%2c38.436%2c59.807C54.424%2c52.478%2c76.848%2c54.316%2c85.847%2c39.205C94.739%2c24.273%2c87.39%2c4.513%2c80.989%2c-11.644C75.445%2c-25.637%2c62.155%2c-33.943%2c52.344%2c-45.357C42.483%2c-56.828%2c37.152%2c-73.138%2c23.169%2c-78.908C8.821%2c-84.828%2c-7.367%2c-80.162%2c-22.37%2c-76.185C-37.715%2c-72.117%2c-55.71%2c-69.067%2c-64.303%2c-55.718C-72.836%2c-42.463%2c-65.986%2c-25.15%2c-65.362%2c-9.398C-64.857%2c3.353%2c-65.79%2c16.03%2c-60.993%2c27.855C-56.051%2c40.039%2c-47.845%2c50.31%2c-37.734%2c58.715C-26.58%2c67.987%2c-14.503%2c78.348%2c0%2c78.556' fill='%231b1c1b'%3e%3c/path%3e%3cpath d='M300 135.039C317.315 136.305 335.747 137.719 350.647 128.809 365.712 119.801 373.063 102.66 380.632 86.82300000000001 388.322 70.733 399.164 53.664 394.829 36.366 390.538 19.244 369.73 12.918999999999997 358.665-0.8329999999999984 346.996-15.334000000000003 345.358-38.917 328.286-46.331999999999994 311.218-53.745000000000005 291.233-45.221000000000004 274.317-37.468999999999994 258.938-30.421999999999997 249.232-16.287000000000006 237.066-4.5319999999999965 223.53 8.545000000000002 200.776 16.734 198.839 35.455 196.889 54.297 217.83100000000002 66.90299999999999 228.02100000000002 82.872 236.567 96.26400000000001 241.034 112.414 253.897 121.737 267.115 131.317 283.718 133.849 300 135.039' fill='%23393a37'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1165'%3e%3crect width='300' height='50' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+        background-size: cover;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+
+        .date {
+          margin-bottom: 20px;
+          color: $white-o;
+          user-select: none;
+        }
+
+        .progress {
+          border-radius: $br-r;
+          padding: 3px 30px 3px 12px;
+          user-select: none;
+          background-color: $green;
+          color: $black;
+          margin-bottom: 20px;
+          font-size: 12px;
+        }
+      }
+
+      .main {
+        position: relative;
+        padding: 10px 20px 30px 20px;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='300' height='100' preserveAspectRatio='none' viewBox='0 0 300 100'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1072%26quot%3b)' fill='none'%3e%3crect width='300' height='100' x='0' y='0' fill='rgba(201%2c 253%2c 116%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c118.33C21.686%2c115.195%2c31.921%2c90.159%2c49.819%2c77.52C66.635%2c65.644%2c94.723%2c65.819%2c101.757%2c46.471C108.902%2c26.817%2c87.795%2c8.344%2c82.301%2c-11.833C77.684%2c-28.791%2c82.102%2c-48.023%2c72.095%2c-62.471C61.669%2c-77.523%2c44.947%2c-88.43%2c26.942%2c-91.756C9.614%2c-94.957%2c-7.198%2c-86.752%2c-23.53%2c-80.137C-38.426%2c-74.104%2c-50.79%2c-64.823%2c-63.58%2c-55.092C-79.753%2c-42.787%2c-101.774%2c-34.802%2c-108.377%2c-15.582C-115.14%2c4.105%2c-106.3%2c25.663%2c-97.858%2c44.69C-89.348%2c63.871%2c-76.791%2c80.783%2c-60.024%2c93.4C-42.355%2c106.696%2c-21.885%2c121.494%2c0%2c118.33' fill='%23b7fc45'%3e%3c/path%3e%3cpath d='M300 183.166C316.395 184.702 333.65999999999997 182.834 347.513 173.93099999999998 361.367 165.02800000000002 369.378 149.775 375.652 134.549 381.747 119.757 384.926 103.952 382.887 88.083 380.828 72.05799999999999 374.957 56.422 364.077 44.477 353.338 32.688 338.741 23.528000000000006 322.852 22.174000000000007 307.95 20.903999999999996 296.3 34.522000000000006 281.634 37.453 264.811 40.815 242.346 27.345 231.299 40.471 220.19 53.671 237.54399999999998 73.664 236.66 90.893 235.89499999999998 105.792 222.442 119.206 226.523 133.55599999999998 230.691 148.213 245.256 157.005 257.885 165.53199999999998 270.759 174.224 284.534 181.71699999999998 300 183.166' fill='%23dbfea3'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1072'%3e%3crect width='300' height='100' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+        background-size: cover;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+
+        .noteActions {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+
+          .checkboxLabel {
+            margin-top: 5px;
+            cursor: pointer;
+
+            input {
+              display: none;
+
+              &:checked ~ svg .path {
+                stroke-dasharray: 70.5096664428711 9999999;
+                stroke-dashoffset: -262.2723388671875;
+              }
+            }
+
+            svg {
+              overflow: visible;
+              height: 26px;
+              width: 26px;
+
+              .path {
+                fill: none;
+                stroke: $black;
+                stroke-width: 6;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition: stroke-dasharray 0.5s ease,
+                  stroke-dashoffset 0.5s ease;
+                stroke-dasharray: 241 9999999;
+                stroke-dashoffset: 0;
+              }
+            }
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .edit {
+              @include regularBtn($blue, $black, $black-h, $black-a, 14px);
+            }
+
+            .editDisabled {
+              @include regularBtn($blue, $black, $black-h, $black-a, 14px);
+              cursor: default;
+              opacity: 0.4;
+              user-select: none;
+            }
+
+            .delete {
+              @include regularBtn($red, $black, $black-h, $black-a, 14px);
+            }
+          }
+        }
+
+        .text {
+          text-wrap: balance;
+          color: $black;
+        }
+
+        .hiddenText {
+          opacity: 0;
+          text-wrap: balance;
+          color: $black;
+        }
+      }
+
+      .editing {
+        display: flex;
+        gap: 16px;
+        position: absolute;
+        top: 68px;
+
+        .editInput {
+          background-color: $white;
+          color: $black;
+          border-radius: $br-r;
+          transition: all $tr-btn;
+          padding-inline: 15px;
+          padding-block: 5px;
+          font-size: 16px;
+          width: clamp(10rem, 8.333rem + 8.33vw, 12.5rem);
+        }
+
+        .save {
+          @include regularBtn($black, $green, $green-h, $green-a, 16px);
+        }
       }
     }
   }
