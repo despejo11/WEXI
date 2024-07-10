@@ -1,6 +1,5 @@
 import Header from '@/ui/Header/Header'
 import DashboardContent from '@/ui/DashboardContent/DashboardContent'
-import Footer from '@/ui/Footer/Footer'
 
 import type { Metadata } from 'next'
 
@@ -14,7 +13,6 @@ export default function Dashboard() {
     <>
       <Header />
       <DashboardContent />
-      <Footer />
     </>
   )
 }

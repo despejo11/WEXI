@@ -3,6 +3,7 @@
 import styles from './style.module.scss'
 
 import { useState, ChangeEvent } from 'react'
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 
 import SelectProgress from './SelectProgress/SelectProgress'
 import DatePickerTodo from './DatePickerTodo/DatePickerTodo'
@@ -49,7 +50,13 @@ export default function Workspace({
   }
 
   const handleAddNote = () => {
-    if (inputValue.trim() === '' || notesCount >= 10) return
+    if (
+      inputValue.trim() === '' ||
+      !selectedDate ||
+      progress === '' ||
+      notesCount >= 10
+    )
+      return
 
     const newNote: TNote = {
       id: Date.now(),
@@ -93,28 +100,46 @@ export default function Workspace({
   }
 
   const handleSaveEdit = (noteId: number) => {
+    if (editingText.trim() === '') return
     updateNoteText(workspace.id, noteId, editingText)
     setEditingNoteId(null)
     setEditingText('')
   }
 
   const handleEditTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEditingText(event.target.value)
+    const { value } = event.target
+
+    if (value.length <= 100) {
+      setEditingText(event.target.value)
+    }
   }
+
+  const isAddButtonDisabled =
+    inputValue.trim() === '' ||
+    !selectedDate ||
+    progress === '' ||
+    notesCount >= 10
 
   return (
     <div className={styles.content}>
       <div className={styles.workspaceInfo}>
-        <p className={styles.title}>{workspaceName}</p>
-        {notesCount !== 0 && (
-          <p className={styles.titled}>Number of Notes: {notesCount}</p>
-        )}
+        <p className={styles.workspaceName}>{workspaceName}</p>
 
-        {notesCount >= 10 && (
-          <p className={styles.limitMessage}>
-            You cannot add more than 10 notes!
-          </p>
-        )}
+        <p
+          className={`${styles.notesCount} ${
+            notesCount !== 0 ? styles.notesCountVisible : ''
+          }`}
+        >
+          Number of Notes: {notesCount}
+        </p>
+
+        <p
+          className={`${styles.limitMessage} ${
+            notesCount >= 10 ? styles.limitMessageVisible : ''
+          }`}
+        >
+          You cannot add more than 10 notes!
+        </p>
       </div>
 
       <div className={styles.addTodo}>
@@ -136,100 +161,155 @@ export default function Workspace({
         <SelectProgress progress={progress} setProgress={setProgress} />
 
         <button
-          className={
-            notesCount >= 10 ? styles.addButtonDisabled : styles.addButton
-          }
+          className={`${styles.addButton} ${
+            isAddButtonDisabled ? styles.addButtonDisabled : ''
+          }`}
           onClick={handleAddNote}
-          disabled={notesCount >= 10}
+          disabled={isAddButtonDisabled}
         >
           <RiStickyNoteAddFill />
         </button>
       </div>
 
-      {workspace.notes.length === 0 ? (
-        <p className={styles.noNotes}>You have no notes!</p>
-      ) : (
-        <div className={styles.notes}>
-          {workspace.notes.map((note) => (
-            <div key={note.id} className={styles.note}>
-              <div className={styles.header}>
-                <p className={styles.date}>{note.date}</p>
-                <p className={styles.progress}>{note.progress}</p>
-              </div>
+      <LayoutGroup>
+        <AnimatePresence mode='wait'>
+          {workspace.notes.length === 0 ? (
+            <motion.p
+              key='noNotes'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className={styles.noNotes}
+            >
+              You have no notes!
+            </motion.p>
+          ) : (
+            <motion.div
+              key='notes'
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className={styles.notes}
+            >
+              <AnimatePresence>
+                {workspace.notes.map((note) => (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    layout
+                    key={note.id}
+                    className={styles.note}
+                  >
+                    <div className={styles.header}>
+                      <p className={styles.date}>{note.date}</p>
+                      <AnimatePresence mode='wait'>
+                        <motion.div
+                          key={note.progress}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className={styles.progressWrapper}
+                        >
+                          <p className={styles.progress}>{note.progress}</p>
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
 
-              <div className={styles.main}>
-                <div className={styles.noteActions}>
-                  <label className={styles.checkboxLabel}>
-                    <input
-                      type='checkbox'
-                      id={`checkbox-${note.id}`}
-                      autoComplete='off'
-                      checked={note.progress === 'Done'}
-                      onChange={() => handleCheckboxChange(note.id)}
-                    />
-                    <svg viewBox='0 0 64 64'>
-                      <path
-                        d='M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16'
-                        pathLength='575.0541381835938'
-                        className={styles.path}
-                      ></path>
-                    </svg>
-                  </label>
+                    <div className={styles.main}>
+                      <div className={styles.noteActions}>
+                        <label className={styles.checkboxLabel}>
+                          <input
+                            type='checkbox'
+                            id={`checkbox-${note.id}`}
+                            autoComplete='off'
+                            checked={note.progress === 'Done'}
+                            onChange={() => handleCheckboxChange(note.id)}
+                          />
+                          <svg viewBox='0 0 64 64'>
+                            <path
+                              d='M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16'
+                              pathLength='575.0541381835938'
+                              className={styles.path}
+                            ></path>
+                          </svg>
+                        </label>
 
-                  <div className={styles.buttons}>
-                    <button
-                      className={
-                        editingNoteId === note.id
-                          ? styles.editDisabled
-                          : styles.edit
-                      }
-                      disabled={editingNoteId === note.id}
-                      onClick={() => handleEditNote(note.id, note.text)}
-                    >
-                      <MdEdit />
-                    </button>
+                        <div className={styles.buttons}>
+                          <button
+                            className={`${styles.edit} ${
+                              editingNoteId === note.id
+                                ? styles.editDisabled
+                                : ''
+                            }`}
+                            disabled={editingNoteId === note.id}
+                            onClick={() => handleEditNote(note.id, note.text)}
+                          >
+                            <MdEdit />
+                          </button>
 
-                    <button
-                      className={styles.delete}
-                      onClick={() => handleDeleteNote(note.id)}
-                    >
-                      <MdDelete />
-                    </button>
-                  </div>
-                </div>
+                          <button
+                            className={styles.delete}
+                            onClick={() => handleDeleteNote(note.id)}
+                          >
+                            <MdDelete />
+                          </button>
+                        </div>
+                      </div>
 
-                <p
-                  className={
-                    editingNoteId === note.id ? styles.hiddenText : styles.text
-                  }
-                >
-                  {note.text}
-                </p>
+                      <p
+                        className={`${styles.text} ${
+                          editingNoteId === note.id ? styles.hiddenText : ''
+                        }`}
+                      >
+                        {note.text}
+                      </p>
 
-                {editingNoteId === note.id && (
-                  <div className={styles.editing}>
-                    <input
-                      type='text'
-                      id='editText'
-                      autoComplete='off'
-                      className={styles.editInput}
-                      value={editingText}
-                      onChange={handleEditTextChange}
-                    />
-
-                    <button
-                      className={styles.save}
-                      onClick={() => handleSaveEdit(note.id)}
-                    >
-                      <FaSave />
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+                      <AnimatePresence>
+                        {editingNoteId === note.id && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.4 }}
+                            className={styles.editing}
+                          >
+                            <input
+                              type='text'
+                              id='editText'
+                              autoComplete='off'
+                              placeholder='Type Something'
+                              className={styles.editingInput}
+                              value={editingText}
+                              onChange={handleEditTextChange}
+                            />
+                            <button
+                              className={`${styles.save} ${
+                                editingText.trim() === ''
+                                  ? styles.saveDisabled
+                                  : ''
+                              }`}
+                              onClick={() => handleSaveEdit(note.id)}
+                              disabled={editingText.trim() === ''}
+                            >
+                              <FaSave />
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </LayoutGroup>
     </div>
   )
 }

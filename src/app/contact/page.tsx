@@ -1,3 +1,4 @@
+import ScrollTrack from '@/components/ScrollTrack/ScrollTrack'
 import Header from '@/ui/Header/Header'
 import ContactContent from '@/ui/ContactContent/ContactContent'
 import Footer from '@/ui/Footer/Footer'
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <>
+      <ScrollTrack />
       <Header />
       <ContactContent />
       <Footer />

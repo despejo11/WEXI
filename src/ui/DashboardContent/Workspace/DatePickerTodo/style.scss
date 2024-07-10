@@ -1,23 +1,12 @@
 @import '/index.scss';
 
 .datePicker {
-  transition: $tr-btn;
   padding-block: clamp(0.5rem, 0.417rem + 0.42vw, 0.625rem);
   padding-inline: clamp(1.375rem, 1.25rem + 0.63vw, 1.563rem);
-  border-radius: $br-r;
-  border: 2px solid $br-c;
   font-size: clamp(1.031rem, 0.885rem + 0.73vw, 1.25rem);
-  color: $black;
-  background-color: $white;
   cursor: pointer;
 
-  &::placeholder {
-    color: #c2c2c2;
-  }
-
-  &:focus {
-    border: 2px solid $green-a;
-  }
+  @extend %input;
 }
 
 .react-datepicker__year-read-view--down-arrow,
@@ -55,6 +44,7 @@
   position: relative;
   line-height: initial;
   padding: 15px;
+  border: 2px solid $br-c;
 }
 
 .react-datepicker-popper {

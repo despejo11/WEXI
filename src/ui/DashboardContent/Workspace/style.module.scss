@@ -4,8 +4,8 @@
   .workspaceInfo {
     margin-bottom: clamp(1.875rem, 1.042rem + 4.17vw, 3.125rem);
 
-    .title {
-      font-size: clamp(2.188rem, 1.165rem + 5.11vw, 5rem);
+    .workspaceName {
+      font-size: clamp(2.188rem, 1.278rem + 4.55vw, 4.688rem);
       color: $black;
       text-align: right;
 
@@ -14,15 +14,25 @@
       }
     }
 
-    .titled {
+    .notesCount {
       margin-top: 10px;
       font-size: clamp(1rem, 0.833rem + 0.83vw, 1.25rem);
       color: $black-h;
       text-align: right;
+      opacity: 0;
+      transition: all $tr-btn;
+      cursor: default;
+      user-select: none;
 
       @media (max-width: 800px) {
         text-align: center;
       }
+    }
+
+    .notesCountVisible {
+      opacity: 1;
+      cursor: auto;
+      user-select: auto;
     }
 
     .limitMessage {
@@ -30,10 +40,20 @@
       font-size: clamp(0.75rem, 0.583rem + 0.83vw, 1rem);
       color: $black-a;
       text-align: right;
+      opacity: 0;
+      transition: all $tr-btn;
+      cursor: default;
+      user-select: none;
 
       @media (max-width: 800px) {
         text-align: center;
       }
+    }
+
+    .limitMessageVisible {
+      opacity: 1;
+      cursor: auto;
+      user-select: auto;
     }
   }
 
@@ -49,30 +69,19 @@
     }
 
     .inputText {
-      transition: $tr-btn;
       padding-block: clamp(0.5rem, 0.417rem + 0.42vw, 0.625rem);
       padding-inline: clamp(1.375rem, 1.25rem + 0.63vw, 1.563rem);
-      border-radius: $br-r;
-      border: 2px solid $br-c;
       font-size: clamp(1.031rem, 0.885rem + 0.73vw, 1.25rem);
-      color: $black;
-      background-color: $white;
 
-      &::placeholder {
-        color: #c2c2c2;
-      }
-
-      &:focus {
-        border: 2px solid $green-a;
-      }
+      @extend %input;
     }
 
     .addButton {
       @include regularBtn($black, $green, $green-h, $green-a, 33px);
+      transition: all $tr-btn;
     }
 
     .addButtonDisabled {
-      @include regularBtn($black, $green, $green-h, $green-a, 33px);
       cursor: default;
       opacity: 0.4;
       user-select: none;
@@ -182,10 +191,10 @@
 
             .edit {
               @include regularBtn($blue, $black, $black-h, $black-a, 14px);
+              transition: all $tr-btn;
             }
 
             .editDisabled {
-              @include regularBtn($blue, $black, $black-h, $black-a, 14px);
               cursor: default;
               opacity: 0.4;
               user-select: none;
@@ -200,12 +209,16 @@
         .text {
           text-wrap: balance;
           color: $black;
+          opacity: 1;
+          transition: all $tr-btn;
+          cursor: auto;
+          user-select: auto;
         }
 
         .hiddenText {
           opacity: 0;
-          text-wrap: balance;
-          color: $black;
+          cursor: default;
+          user-select: none;
         }
       }
 
@@ -215,19 +228,35 @@
         position: absolute;
         top: 68px;
 
-        .editInput {
+        .editingInput {
           background-color: $white;
           color: $black;
           border-radius: $br-r;
+          border: 2px solid $br-c;
           transition: all $tr-btn;
           padding-inline: 15px;
           padding-block: 5px;
-          font-size: 16px;
+          font-size: clamp(0.875rem, 0.792rem + 0.42vw, 1rem);
           width: clamp(10rem, 8.333rem + 8.33vw, 12.5rem);
+
+          &::placeholder {
+            color: #c2c2c2;
+          }
+
+          &:focus {
+            border: 2px solid $green-a;
+          }
         }
 
         .save {
           @include regularBtn($black, $green, $green-h, $green-a, 16px);
+          transition: all $tr-btn;
+        }
+
+        .saveDisabled {
+          cursor: default;
+          opacity: 0.4;
+          user-select: none;
         }
       }
     }

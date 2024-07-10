@@ -1,0 +1,103 @@
+@import '/index.scss';
+
+%color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  content: '';
+  display: inline-block;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: 100px;
+
+  @media (max-width: 700px) {
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .info {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='200' height='200' preserveAspectRatio='none' viewBox='0 0 200 200'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1021%26quot%3b)' fill='none'%3e%3crect width='200' height='200' x='0' y='0' fill='rgba(42%2c 43%2c 41%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c91.295C17.016%2c90.988%2c31.046%2c79.722%2c45.92%2c71.452C61.859%2c62.59%2c85.364%2c58.768%2c90.15%2c41.17C95.11%2c22.932%2c75.518%2c7.567%2c68.012%2c-9.779C62.745%2c-21.95%2c60.083%2c-34.631%2c52.608%2c-45.585C44.325%2c-57.722%2c35.868%2c-70.489%2c22.468%2c-76.518C8.191%2c-82.941%2c-8.568%2c-84.714%2c-23.43%2c-79.794C-38.096%2c-74.939%2c-47.134%2c-61.27%2c-57.685%2c-49.985C-68.673%2c-38.233%2c-81.064%2c-27.597%2c-86.419%2c-12.425C-92.483%2c4.754%2c-97.431%2c24.467%2c-89.807%2c41.013C-82.187%2c57.55%2c-62.885%2c64.235%2c-46.998%2c73.13C-32.04%2c81.505%2c-17.14%2c91.605%2c0%2c91.295' fill='%231b1c1b'%3e%3c/path%3e%3cpath d='M200 295.883C217.694 295.428 227.368 275.163 241.235 264.163 253.47 254.458 269.858 249.065 276.71 235.03199999999998 283.618 220.885 282.906 203.752 278.043 188.779 273.56100000000004 174.981 259.87 167.291 250.982 155.824 241.41899999999998 143.486 238.8 123.265 223.831 118.838 208.86599999999999 114.412 196.342 132.55 180.947 135.11 162.256 138.219 138.751 121.933 125.255 135.233 112.141 148.156 125.473 170.94 125.908 189.347 126.26 204.233 121.931 219.298 127.566 233.07999999999998 133.315 247.141 145.902 256.367 157.38 266.318 170.714 277.879 182.358 296.337 200 295.883' fill='%23393a37'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1021'%3e%3crect width='200' height='200' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-size: cover;
+    padding: 30px;
+    border-radius: $br-r;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 280px;
+
+    .total {
+      color: $white-o;
+
+      .maxQuantity {
+        color: $red;
+        font-size: 18px;
+        transition: all $tr-btn;
+      }
+
+      span {
+        color: $white-a;
+        font-size: 18px;
+        transition: all $tr-btn;
+      }
+    }
+
+    .colors {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: $white-o;
+
+        .progress {
+          color: $white-a;
+        }
+
+        .bracket {
+          color: $white-o;
+        }
+
+        .progressData {
+          color: $white-o;
+        }
+
+        .progressDataRed {
+          color: $red;
+        }
+
+        .progressDataGreen {
+          color: $green;
+        }
+
+        .notStarted {
+          background-color: $black-a;
+          border: 1px solid $br-c;
+
+          @extend %color;
+        }
+
+        .inProgress {
+          background-color: $blue;
+
+          @extend %color;
+        }
+
+        .done {
+          background-color: $green;
+
+          @extend %color;
+        }
+      }
+    }
+  }
+}

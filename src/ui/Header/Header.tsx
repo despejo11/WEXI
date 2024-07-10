@@ -54,7 +54,7 @@ export default function Header() {
         onClick={handleLogoClick}
         className={styles.logo}
       >
-        <img src='/images/other/logo.png' alt='Logo' />
+        <img src='/images/logo.png' alt='Logo' />
         <p>WEXI</p>
       </motion.a>
 

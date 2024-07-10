@@ -1,8 +1,6 @@
 import './global.scss'
 import '@/../index.scss'
 
-import ScrollTrack from '@/components/ScrollTrack/ScrollTrack'
-
 import { Montserrat } from 'next/font/google'
 import type { Metadata } from 'next'
 
@@ -54,10 +52,7 @@ export default function RootLayout({
           </p>
         </div>
 
-        <div className='screenContent'>
-          <ScrollTrack />
-          {children}
-        </div>
+        <div className='screenContent'>{children}</div>
       </body>
     </html>
   )

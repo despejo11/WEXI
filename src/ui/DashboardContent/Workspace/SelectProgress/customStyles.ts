@@ -5,7 +5,7 @@ import { TOption } from './types'
 export const customStyles: StylesConfig<TOption> = {
   control: (provided, state) => ({
     ...provided,
-    width: '220px',
+    width: 'clamp(9.313rem, 7.563rem + 8.75vw, 11.938rem)',
     paddingInline: '22px',
     borderRadius: '25px',
     color: '#111110',
@@ -44,8 +44,8 @@ export const customStyles: StylesConfig<TOption> = {
   menu: (provided) => ({
     ...provided,
     borderRadius: '25px',
-    padding: '20px',
-    border: 'none',
+    padding: '13px 20px 13px 20px',
+    border: '2px solid #919291',
     boxShadow: 'none',
     backgroundSize: 'cover',
     backgroundImage:
@@ -58,8 +58,8 @@ export const customStyles: StylesConfig<TOption> = {
     fontSize: '14px',
     color: '#111110',
     borderRadius: '25px',
-    marginTop: '8px',
-    marginBottom: '8px',
+    marginTop: '12px',
+    marginBottom: '12px',
     backgroundColor: '#c9fd74',
     ':hover': {
       backgroundColor: '#c9fd74',

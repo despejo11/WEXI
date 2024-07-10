@@ -38,7 +38,6 @@
 
 .content {
   margin-top: clamp(0.813rem, -0.063rem + 1.75vw, 1.25rem);
-
   @media (max-width: 800px) {
     margin-top: 0;
   }
@@ -145,14 +144,12 @@
         align-items: center;
 
         .editInput {
-          background-color: $white;
-          color: $black;
-          border-radius: $br-r;
-          transition: all $tr-btn;
           padding-inline: 20px;
           padding-block: 5px;
-          font-size: 18px;
+          font-size: 15px;
           width: 180px;
+
+          @extend %input;
         }
 
         .save {
@@ -163,6 +160,13 @@
             $black-a,
             clamp(0.75rem, -1.25rem + 10vw, 1rem)
           );
+          transition: all $tr-btn;
+        }
+
+        .saveDisabled {
+          cursor: default;
+          opacity: 0.4;
+          user-select: none;
         }
       }
 
@@ -203,10 +207,10 @@
 
         .delete {
           @include regularBtn($red, $black, $black-h, $black-a, 16px);
+          transition: all $tr-btn;
         }
 
         .deleteDisabled {
-          @include regularBtn($red, $black, $black-h, $black-a, 16px);
           cursor: default;
           opacity: 0.4;
           user-select: none;
@@ -214,44 +218,32 @@
 
         .edit {
           @include regularBtn($blue, $black, $black-h, $black-a, 16px);
+          transition: all $tr-btn;
         }
 
         .editDisabled {
-          @include regularBtn($blue, $black, $black-h, $black-a, 16px);
           cursor: default;
           opacity: 0.4;
           user-select: none;
         }
+      }
 
-        .showQuestion {
-          display: flex;
-          gap: 10px;
-          align-items: center;
+      .showQuestion {
+        display: flex;
+        gap: 10px;
+        align-items: center;
 
-          .question {
-            color: $white-o;
-            font-size: clamp(0.75rem, 0.583rem + 0.83vw, 1rem);
-          }
+        .question {
+          color: $white-o;
+          font-size: clamp(0.875rem, 0.792rem + 0.42vw, 1rem);
+        }
 
-          .yes {
-            @include regularBtn(
-              $green,
-              $black,
-              $black-h,
-              $black-a,
-              clamp(0.875rem, 0.792rem + 0.42vw, 1rem)
-            );
-          }
+        .yes {
+          @include regularBtn($green, $black, $black-h, $black-a, 16px);
+        }
 
-          .no {
-            @include regularBtn(
-              $red,
-              $black,
-              $black-h,
-              $black-a,
-              clamp(0.875rem, 0.792rem + 0.42vw, 1rem)
-            );
-          }
+        .no {
+          @include regularBtn($red, $black, $black-h, $black-a, 16px);
         }
       }
     }

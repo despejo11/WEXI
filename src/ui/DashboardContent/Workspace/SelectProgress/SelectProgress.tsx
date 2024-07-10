@@ -34,7 +34,7 @@ export default function SelectProgress({
 
   return (
     <Select
-      placeholder='Progress'
+      placeholder='Select a Progress'
       isSearchable
       options={progressOptions}
       styles={customStyles}

@@ -3,11 +3,16 @@
 import styles from './style.module.scss'
 
 import { useState, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import gsap from 'gsap'
 
 import WorkspacePanel from './WorkspacePanel/WorkspacePanel'
 import Workspace from './Workspace/Workspace'
+import Statistics from './Statistics/Statistics'
 
 import { TWorkspace, TNote } from './types'
+
+import { FaArrowUp } from 'react-icons/fa6'
 
 export default function DashboardContent() {
   const [workspaces, setWorkspaces] = useState<TWorkspace[]>([])
@@ -30,6 +35,7 @@ export default function DashboardContent() {
       }
 
       setWorkspaces([defaultWorkspace])
+      setActiveWorkspaceId(defaultWorkspace.id)
       localStorage.setItem(localStorageKey, JSON.stringify([defaultWorkspace]))
     }
   }, [])
@@ -57,7 +63,20 @@ export default function DashboardContent() {
   }
 
   const switchWorkspace = (id: number) => {
+    if (id === activeWorkspaceId) return
+
+    const scrollY = window.scrollY
+    const screenWidth = window.innerWidth
+
     setActiveWorkspaceId(id)
+
+    if (screenWidth > 800 && scrollY > 180) {
+      gsap.to(window, {
+        duration: 1.3,
+        scrollTo: { y: 180 },
+        ease: 'expo.inOut',
+      })
+    }
   }
 
   const deleteWorkspace = (id: number) => {
@@ -155,30 +174,87 @@ export default function DashboardContent() {
   const activeWorkspaceName = activeWorkspace?.name || ''
   const activeWorkspaceNotesCount = activeWorkspace?.notes.length || 0
 
-  return (
-    <div className='container'>
-      <div className={styles.content}>
-        <WorkspacePanel
-          workspaces={workspaces}
-          addWorkspace={addWorkspace}
-          switchWorkspace={switchWorkspace}
-          deleteWorkspace={deleteWorkspace}
-          renameWorkspace={renameWorkspace}
-          activeWorkspaceId={activeWorkspaceId}
-        />
+  const totalNotesCount = workspaces.reduce(
+    (acc, ws) => acc + ws.notes.length,
+    0
+  )
 
-        {activeWorkspace && (
-          <Workspace
-            workspace={activeWorkspace}
-            addNote={addNote}
-            updateNoteProgress={updateNoteProgress}
-            deleteNote={deleteNote}
-            updateNoteText={updateNoteText}
-            workspaceName={activeWorkspaceName}
-            notesCount={activeWorkspaceNotesCount}
+  const scrollToTop = () => {
+    gsap.to(window, { duration: 1.7, scrollTo: { y: 0 }, ease: 'expo.inOut' })
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2, delay: 1 }}
+      className={styles.background}
+    >
+      <div className='container'>
+        <div className={styles.content}>
+          <WorkspacePanel
+            workspaces={workspaces}
+            addWorkspace={addWorkspace}
+            switchWorkspace={switchWorkspace}
+            deleteWorkspace={deleteWorkspace}
+            renameWorkspace={renameWorkspace}
+            activeWorkspaceId={activeWorkspaceId}
           />
-        )}
+
+          <AnimatePresence mode='wait'>
+            {activeWorkspace && (
+              <motion.div
+                key={activeWorkspaceId}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <Workspace
+                  workspace={activeWorkspace}
+                  addNote={addNote}
+                  updateNoteProgress={updateNoteProgress}
+                  deleteNote={deleteNote}
+                  updateNoteText={updateNoteText}
+                  workspaceName={activeWorkspaceName}
+                  notesCount={activeWorkspaceNotesCount}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <AnimatePresence mode='wait'>
+          {totalNotesCount > 0 && (
+            <motion.div
+              key='statistics'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className={styles.statistics}
+            >
+              <Statistics workspaces={workspaces} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {totalNotesCount > 0 && (
+            <motion.button
+              key='scrollToTop'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              onClick={scrollToTop}
+              className={styles.scrollToTop}
+            >
+              <FaArrowUp />
+            </motion.button>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   )
 }
