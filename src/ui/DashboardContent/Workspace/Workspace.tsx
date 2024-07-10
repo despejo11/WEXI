@@ -123,7 +123,18 @@ export default function Workspace({
   return (
     <div className={styles.content}>
       <div className={styles.workspaceInfo}>
-        <p className={styles.workspaceName}>{workspaceName}</p>
+        <AnimatePresence mode='wait'>
+          <motion.p
+            key={workspaceName}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className={styles.workspaceName}
+          >
+            {workspaceName}
+          </motion.p>
+        </AnimatePresence>
 
         <p
           className={`${styles.notesCount} ${

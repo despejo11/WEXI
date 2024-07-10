@@ -15,7 +15,7 @@ export default function Statistics({ workspaces }: TStatisticsProps) {
     { name: string; value: number }[]
   >([])
   const [chartSize, setChartSize] = useState<{ width: number; height: number }>(
-    { width: 380, height: 380 }
+    { width: 360, height: 360 }
   )
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Statistics({ workspaces }: TStatisticsProps) {
       if (window.innerWidth <= 800) {
         setChartSize({ width: 280, height: 280 })
       } else {
-        setChartSize({ width: 380, height: 380 })
+        setChartSize({ width: 360, height: 360 })
       }
     }
 
